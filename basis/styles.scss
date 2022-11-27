@@ -92,7 +92,7 @@
             @extend .on-primary-text;
             @extend .title-large-adaptiv;
 
-            /*Более светлый вариант без тени*/
+            /*Более светлый вариант без тени. В этом случае заменить так же --logo-dark в _theme.scss*/
             // @extend .on-primary-text-hero;
             // @extend .title-large-adaptiv-no-shadow;
 
@@ -136,7 +136,7 @@
          @extend .on-primary-text;
          @extend .display-adaptiv;
 
-         /*Более светлый вариант без тени*/
+         /*Более светлый вариант без тени. В этом случае заменить так же --logo-dark в _theme.scss*/
          // @extend .on-primary-text-hero;
          // @extend .display-adaptiv-no-shadow;
       }
@@ -147,7 +147,7 @@
          @extend .on-primary-text;
          @extend .headline-adaptiv;
 
-         /*Более светлый вариант без тени*/
+         /*Более светлый вариант без тени. В этом случае заменить так же --logo-dark в _theme.scss*/
          // @extend .on-primary-text-hero;
          // @extend .headline-adaptiv-no-shadow;
       }
