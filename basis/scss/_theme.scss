@@ -34,6 +34,8 @@
    --md-sys-color-scrim: var(--md-sys-color-scrim-dark);
    --md-sys-color-shadow-text: var(--md-sys-shadow-text-dark);
    --logo-dark: url(./Image/D-Logo.png);
+   /*Более светлый вариант*/
+   // --logo-dark: url(./Image/F-Logo.png);
 }
 
 @mixin theme-light {
