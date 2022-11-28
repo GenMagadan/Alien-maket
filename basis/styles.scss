@@ -1,0 +1,548 @@
+@use 'scss/theme';
+
+@forward 'scss/tokens.scss';
+@forward 'scss/typography.module';
+@forward 'scss/colors.module';
+@forward 'scss/elevation.module';
+
+:root {
+   --body-margins: 16px;
+   --bode-grow: 0;
+   --body-columns: 4;
+   --body-gatters: 8px;
+
+   @media(min-width: 632px) {
+      --body-margins: 32px;
+      --body-columns: 12;
+      --body-gatters: 12px;
+   }
+
+   @media(min-width: 904px) {
+      --body-margins: auto;
+   }
+
+   @media(min-width: 1240px) {
+      --body-margins: 200px;
+      --bode-grow: 1;
+      --body-gatters: 32px;
+   }
+
+   @include theme.theme;
+}
+
+* {
+   margin: 0;
+   padding: 0;
+}
+
+.content {
+   height: 100%;
+   flex-basis: 840px;
+   flex-shrink: 1;
+   flex-grow: var(--bode-grow);
+   margin-inline: var(--body-margins);
+   display: grid;
+   grid-template-columns: repeat(var(--body-columns), 1fr);
+   grid-column-gap: var(--body-gatters);
+}
+
+.hero-section {
+   background-image: url(./Image/alien-hero.webp);
+   background-size: cover;
+   height: 100vh;
+   display: flex;
+
+   .hero {
+      grid-template-rows: 100px 1fr;
+
+      @media(max-width: 631px) {
+         grid-template-rows: 70px 1fr;
+      }
+
+      .logo {
+         grid-column-start: 1;
+         grid-column-end: 3;
+         grid-row-start: 1;
+         grid-row-end: 2;
+         aspect-ratio: 3.5/1;
+         background-image: var(--background-logo);
+         background-size: cover;
+         margin-block: 26px;
+
+
+         @media(max-width: 631px) {
+            grid-column: 1/2;
+         }
+      }
+
+      .nav-text {
+         grid-column: 7/13;
+         grid-row: 1/2;
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+
+         a {
+            /*Первый вариант с тенью*/
+            @extend .on-primary-text;
+            @extend .title-large-adaptiv;
+            /*Более светлый вариант без тени. В этом случае заменить так же --logo-dark в _theme.scss*/
+            // @extend .on-primary-text-hero;
+            // @extend .title-large-adaptiv-no-shadow;
+            text-decoration: none;
+         }
+
+         @media(max-width: 903px) {
+            grid-column: 5/13;
+         }
+
+         @media(max-width: 631px) {
+            grid-column: 2/5;
+         }
+      }
+   }
+
+   .heading {
+      grid-column: 1/7;
+      grid-row: 2/3;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 100px;
+
+      @media(max-width: 1239px) {
+         grid-column: 1/8;
+      }
+
+      @media(max-width: 903px) {
+         grid-column: 1/9;
+      }
+
+      @media(max-width: 631px) {
+         grid-column: 1/5;
+         grid-row: 2/3;
+      }
+
+      h1 {
+         /*Первый вариант с тенью*/
+         @extend .on-primary-text;
+         @extend .display-adaptiv;
+
+         /*Более светлый вариант без тени. В этом случае заменить так же --logo-dark в _theme.scss*/
+         // @extend .on-primary-text-hero;
+         // @extend .display-adaptiv-no-shadow;
+      }
+
+      h3 {
+         margin-top: 8px;
+         /*Первый вариант с тенью*/
+         @extend .on-primary-text;
+         @extend .headline-adaptiv;
+
+         /*Более светлый вариант без тени. В этом случае заменить так же --logo-dark в _theme.scss*/
+         // @extend .on-primary-text-hero;
+         // @extend .headline-adaptiv-no-shadow;
+      }
+
+      button {
+         @extend .primary;
+         @extend .on-primary-text;
+         @extend .display-adaptiv;
+         @extend .elevation-level3;
+         border-style: none;
+         align-items: center;
+         padding-block: 24px;
+         border-radius: 16px;
+         cursor: pointer;
+
+         &:hover {
+            opacity: 0.8;
+         }
+
+         &:active {
+            opacity: 0.8;
+            @extend .inverse-surface;
+         }
+
+         @media(max-width: 903px) {
+            padding-block: 22px;
+         }
+
+         @media(max-width: 631px) {
+            padding-block: 20px;
+         }
+      }
+   }
+}
+
+.report-section {
+   @extend .background;
+   padding-block: 100px;
+   display: flex;
+
+   @media(max-width: 631px) {
+      padding-block: 50px;
+   }
+
+   .report {
+      @media(max-width: 631px) {
+         grid-template-rows: repeat(2, auto);
+         row-gap: 16px;
+      }
+
+      .image {
+         grid-column: 1/6;
+         background-size: cover;
+         border-radius: 16px;
+         @extend .elevation-level3;
+
+         &.smile-alien {
+            background-image: url(./Image/Alien.webp);
+         }
+
+         &.covey {
+            background-image: url(./Image/Xenomorph_XX121.webp);
+         }
+
+         @media(max-width: 631px) {
+            height: 300px;
+            grid-column: 1/5;
+            grid-row: 1/2;
+         }
+      }
+
+      .report-text {
+         grid-column: 7/13;
+
+         @media(max-width: 631px) {
+            grid-column: 1/5;
+            grid-row: 2/3;
+         }
+
+         h4 {
+            @extend .headline-medium-adaptiv;
+            @extend .primary-text;
+         }
+
+         p {
+            @extend .on-surface-text;
+            @extend .body-adaptiv;
+            margin-top: 8px;
+         }
+      }
+   }
+}
+
+.slogan-section {
+   padding-block: 70px;
+   display: flex;
+
+   &.one {
+      @extend .inverse-surface;
+
+      h1 {
+         @extend .on-primary-text;
+         @extend .display-adaptiv;
+      }
+   }
+
+   &.two {
+      @extend .primary-container;
+
+      h1 {
+         @extend .on-primary-container-text;
+         @extend .display-adaptiv-no-shadow;
+      }
+
+      h2 {
+         @extend .on-primary-container-text;
+         @extend .display-medium-adaptiv;
+         padding-block: 8px;
+      }
+
+      h3 {
+         @extend .on-primary-container-text;
+         @extend .display-small-adaptiv;
+      }
+   }
+
+   @media(max-width: 903px) {
+      padding-block: 50px;
+   }
+
+   @media(max-width: 631px) {
+      padding-block: 30px;
+   }
+
+   .slogan {
+      grid-template-columns: 1fr;
+      place-content: center;
+      text-align: center;
+   }
+}
+
+.incident-section {
+   @extend .background;
+   padding-block: 100px;
+   display: flex;
+
+   @media(max-width: 631px) {
+      padding-block: 50px;
+   }
+
+   .incident {
+
+      @media(max-width: 631px) {
+         grid-template-rows: repeat(2, auto);
+         row-gap: 16px;
+      }
+
+      .incident-text {
+         grid-column: 1/7;
+
+         @media(max-width: 631px) {
+            grid-column: 1/5;
+            grid-row: 1/2;
+         }
+
+         h4 {
+            @extend .headline-medium-adaptiv;
+            @extend .primary-text;
+         }
+
+         p {
+            @extend .on-surface-text;
+            @extend .body-adaptiv;
+            margin-top: 8px;
+         }
+      }
+
+      .image {
+         grid-column: 8/13;
+         background-size: cover;
+         border-radius: 16px;
+         @extend .elevation-level3;
+
+         @media(max-width: 631px) {
+            height: 300px;
+            grid-column: 1/5;
+            grid-row: 2/3;
+         }
+
+         &.alien-isoltion {
+            background-image: url(./Image/alien-isolation-pc-games.jpg);
+         }
+
+         &.alien-body {
+            background-image: url(./Image/body-alien.jfif);
+         }
+
+         &.egg-alien {
+            background-image: url(./Image/egg-alien.jfif);
+         }
+      }
+   }
+}
+
+.insert-section {
+   @extend .surface-variant;
+   padding-block: 70px;
+   display: flex;
+
+   @media(max-width: 903px) {
+      padding-block: 50px;
+   }
+
+   @media(max-width: 631px) {
+      padding-block: 30px;
+   }
+
+   .insert {
+      p {
+         grid-column: 5/13;
+         @extend .on-surface-text;
+         @extend .body-adaptiv;
+      }
+   }
+}
+
+.application-section {
+   @extend .secondary-container;
+   padding-block: 100px;
+   display: flex;
+
+   @media(max-width: 631px) {
+      padding-block: 50px;
+   }
+
+   h4 {
+      @extend .headline-medium-adaptiv;
+      @extend .primary-text;
+   }
+
+   p {
+      @extend .on-surface-text;
+      @extend .body-adaptiv;
+      margin-top: 8px;
+   }
+
+   .application {
+      grid-template-rows: repeat(3, 1fr);
+      row-gap: 16px;
+
+      @media(max-width: 631px) {
+         grid-template-rows: repeat(6, auto);
+         row-gap: 16px;
+      }
+
+      .head-alien {
+         grid-column: 1/5;
+         grid-row: 1/2;
+         background-image: url(./Image/sddefault.jpg);
+         background-size: cover;
+         border-radius: 16px;
+         @extend .elevation-level3;
+
+         @media(max-width: 631px) {
+            height: 300px;
+            grid-column: 1/5;
+            grid-row: 1/2;
+         }
+      }
+
+      .medicina {
+         grid-column: 1/6;
+         grid-row: 2/3;
+
+         @media(max-width: 631px) {
+            grid-column: 1/5;
+            grid-row: 2/3;
+         }
+      }
+
+      .science {
+         grid-column: 1/6;
+         grid-row: 3/4;
+
+         @media(max-width: 631px) {
+            grid-column: 1/5;
+            grid-row: 3/4;
+         }
+      }
+
+      .possible {
+         grid-column: 6/13;
+         grid-row: 1/2;
+
+         @media(max-width: 631px) {
+            grid-column: 1/5;
+            grid-row: 4/5;
+         }
+      }
+
+      .military {
+         grid-column: 6/13;
+         grid-row: 2/3;
+
+         @media(max-width: 631px) {
+            grid-column: 1/5;
+            grid-row: 5/6;
+         }
+      }
+
+      .interaction {
+         grid-column: 6/13;
+         grid-row: 3/4;
+
+         @media(max-width: 631px) {
+            grid-column: 1/5;
+            grid-row: 6/7;
+         }
+      }
+   }
+}
+
+.button-section {
+   @extend .inverse-surface;
+   display: flex;
+   padding-block: 70px;
+
+   .section {
+      button {
+         @extend .primary;
+         @extend .on-primary-text;
+         @extend .display-adaptiv;
+         @extend .elevation-level3;
+         border-style: none;
+         align-items: center;
+         padding-block: 24px;
+         border-radius: 16px;
+         grid-column: 4/10;
+         cursor: pointer;
+
+         &:hover {
+            opacity: 0.8;
+         }
+
+         &:active {
+            opacity: 0.8;
+            @extend .primary-container;
+         }
+
+         @media(max-width: 903px) {
+            padding-block: 22px;
+         }
+
+         @media(max-width: 631px) {
+            grid-column: 1/5;
+            padding-block: 20px;
+         }
+      }
+   }
+}
+
+.big-logo-section {
+   @extend .background;
+   display: flex;
+   padding-block: 100px;
+
+   @media(max-width: 903px) {
+      padding-block: 70px;
+   }
+
+   @media(max-width: 631px) {
+      padding-block: 40px;
+   }
+
+   .big-logo {
+      .logo-corp {
+         background-image: var(--background-logo-full);
+         background-size: cover;
+         grid-column: 4/10;
+         aspect-ratio: 2.1/1;
+
+         @media(max-width: 631px) {
+            grid-column: 2/4;
+         }
+      }
+   }
+}
+
+footer {
+   @extend .inverse-surface;
+   padding-block: 45px;
+   display: flex;
+
+   .signature {
+      grid-column: 9/13;
+
+      @media(max-width: 631px) {
+         grid-column: 2/5;
+      }
+
+      p {
+         @extend .inverse-on-surface-text;
+         @extend .body-medium;
+      }
+   }
+}
